@@ -9,6 +9,6 @@ import lombok.extern.slf4j.Slf4j;
 public class DynamoDBAccessor {
     
     void log(){
-        log.info("tlqkfsha");
+        log.info("up");
     }
 }
