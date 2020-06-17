@@ -1,12 +1,17 @@
 plugins {
 	id 'org.springframework.boot' version '2.3.0.RELEASE'
 	id 'io.spring.dependency-management' version '1.0.9.RELEASE'
-	id 'java'
+	id 'java-library'
+	id 'jacoco'
+	id 'com.google.cloud.tools.jib' version '2.1.0'
 }
 
 group = 'com.shinstealler'
-version = '0.0.1-SNAPSHOT'
-sourceCompatibility = '1.8'
+version = '1.0.0'
+java {
+  sourceCompatibility = JavaVersion.VERSION_1_8
+  targetCompatibility = JavaVersion.VERSION_1_8
+}
 
 configurations {
 	compileOnly {
@@ -16,13 +21,17 @@ configurations {
 
 repositories {
 	jcenter()
-	mavenCentral()
+    mavenLocal()
+    mavenCentral()
 }
 
 dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
 	implementation 'org.springframework.boot:spring-boot-starter-web'
 	implementation 'org.springframework.session:spring-session-core'
+	implementation 'org.springframework.boot:spring-boot-starter-actuator'
+	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+	runtimeOnly 'com.h2database:h2'
 
 	compileOnly 'org.projectlombok:lombok:1.18.12'
 	annotationProcessor 'org.projectlombok:lombok:1.18.12'
@@ -34,4 +43,18 @@ dependencies {
 
 test {
 	useJUnitPlatform()
+}
+
+jib.to.image = 'sample/path'
+jib.container.environment = [JAVA_TOOL_OPTIONS: '-Dfile.encoding=UTF-8']
+jib.container.mainClass = 'com.shinstealer.talkative.TalkativeSpringBoot'
+jib.from.image ='amazoncorretto:8'
+
+def defaultEncoding = 'UTF-8'
+tasks.withType(AbstractCompile).each { it.options.encoding = defaultEncoding }
+tasks.withType(GroovyCompile).each { it.groovyOptions.encoding = defaultEncoding }
+
+javadoc {
+  options.charSet = defaultEncoding
+  options.encoding = defaultEncoding
 }

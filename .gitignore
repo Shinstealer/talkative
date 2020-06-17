@@ -4,8 +4,7 @@ build/
 !gradle/wrapper/gradle-wrapper.jar
 !**/src/main/**
 !**/src/test/**
-### JAVA ###
-*.class
+*.log
 
 ### STS ###
 .apt_generated
@@ -33,4 +32,6 @@ out/
 ### VS Code ###
 .vscode/
 *.code-workspace
+/bin/
+/gen
 

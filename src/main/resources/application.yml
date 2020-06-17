@@ -1,0 +1,15 @@
+spring:
+  main:
+    banner-mode: "off"
+    log-startup-info: true
+
+#-----
+logging:
+  file:
+    path: ${LOG_FILE:/usr/local/dev/talkative}
+    
+  pattern:
+    console: "%d{yyyy-MM-dd HH:mm:ss.SSS, JST} ${LOG_LEVEL_PATTERN:-%5p} --- [%t] %-40.40logger{39} : %m%n"
+    file: "%d{yyyy-MM-dd HH:mm:ss.SSS, JST} ${LOG_LEVEL_PATTERN:-%5p} --- [%t] %-40.40logger{39} : %m%n"
+  level:
+    com.shinstealer.craft:  ${LOG_LEVEL:INFO}
