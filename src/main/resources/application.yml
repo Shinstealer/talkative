@@ -2,8 +2,16 @@ spring:
   main:
     banner-mode: "off"
     log-startup-info: true
+  h2:
+    console:
+      enabled: true
+  datasource:
+    url: jdbc:h2:mem:testdb
+    driver-class-name: org.h2.Driver
+    username: sa
+    password:
 
-#-----
+---
 logging:
   file:
     path: ${LOG_FILE:/usr/local/dev/talkative}

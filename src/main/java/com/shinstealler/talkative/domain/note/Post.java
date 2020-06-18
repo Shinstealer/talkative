@@ -13,7 +13,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Getter
 @Entity
-public class Post {
+public class Post extends BaseTimeEntity{
 
     @Id
     @GeneratedValue
