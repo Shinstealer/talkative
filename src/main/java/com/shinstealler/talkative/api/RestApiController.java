@@ -4,8 +4,12 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import com.shinstealler.talkative.model.PostSaveRequestModel;
+import com.shinstealler.talkative.model.ResponseModel;
+import com.shinstealler.talkative.model.StatusCode;
 import com.shinstealler.talkative.service.note.PostService;
 
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -33,16 +37,30 @@ public class RestApiController {
     }
 
     @PostMapping("/note/post")
-    public void savePost(@RequestBody PostSaveRequestModel request) {
+    public ResponseEntity<ResponseModel> savePost(HttpServletRequest request,
+            @RequestBody PostSaveRequestModel saveRequest) {
         log.info("request save post " + request);
-        postService.createPost(request);
+
+        try {
+            postService.createPost(saveRequest);
+
+            ResponseModel responseModel = new ResponseModel(StatusCode.SUCCESS);
+
+            return ResponseEntity.ok(responseModel);
+
+        } catch (Exception e) {
+            log.error("Error:" , e);
+            return new ResponseEntity<>(new ResponseModel(StatusCode.ERROR), HttpStatus.OK);
+        }
+
     }
+
     @GetMapping("note/delete/{id}")
-    public String deletePost(HttpServletRequest request,@PathVariable("id") long id){
-        
+    public String deletePost(HttpServletRequest request, @PathVariable("id") long id) {
+
         HttpSession session = request.getSession();
         postService.deletePost(id);
-        
+
         return "SUCCESS";
     }
 
