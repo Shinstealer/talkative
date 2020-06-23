@@ -21,3 +21,14 @@ logging:
     file: "%d{yyyy-MM-dd HH:mm:ss.SSS, JST} ${LOG_LEVEL_PATTERN:-%5p} --- [%t] %-40.40logger{39} : %m%n"
   level:
     com.shinstealer.craft:  ${LOG_LEVEL:INFO}
+
+---
+spring:
+  thymeleaf:
+    prefix: classpath:templates/
+    check-template-location: true
+    suffix: .html
+    mode: HTML5
+    cache: false
+    template-resolver-order: 0
+
