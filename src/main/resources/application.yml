@@ -10,6 +10,11 @@ spring:
     driver-class-name: org.h2.Driver
     username: sa
     password:
+    data: classpath:data-h2.sql
+  jpa:
+    show-sql: true
+    hibernate:
+      ddl-auto: create-drop
 
 ---
 logging:
