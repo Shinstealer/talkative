@@ -31,9 +31,14 @@ public class RestApiController {
         this.postService = postService;
     }
 
+    @GetMapping("/")
+    public String main(){
+        return "main";
+    }
+
     @GetMapping("/note")
-    public void listPost(Model model) {
-        model.addAttribute("post", postService.findAllDesc());
+    public void listPost(HttpServletRequest request ,Model model) {
+        model.addAttribute("post", postService.findAllPostDesc());
     }
 
     @PostMapping("/note/post")
@@ -61,7 +66,7 @@ public class RestApiController {
         HttpSession session = request.getSession();
         postService.deletePost(id);
 
-        return "SUCCESS";
+        return "redirect:/";
     }
 
 }

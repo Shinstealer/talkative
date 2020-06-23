@@ -1,27 +1,33 @@
 package com.shinstealler.talkative.etc;
 
-import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class Candy {
-    public List<Boolean> kidsWithCandies(int[] candies, int extraCandies) {
-        List<Boolean> boolList = new ArrayList<>();
-        int max = 0;
+    // public List<Boolean> kidsWithCandies(int[] candies, int extraCandies) {
+    //     List<Boolean> boolList = new ArrayList<>();
+    //     int max = 0;
         
-        for (int candy : candies) {
-            max = Math.max(candy, max);
-        }
+    //     for (int candy : candies) {
+    //         max = Math.max(candy, max);
+    //     }
 
-        for (int candy : candies) {
-            if (candy + extraCandies >= max) {
-                boolList.add(true);
-            }else{
-                boolList.add(false);
-            }
-        }
+    //     for (int candy : candies) {
+    //         if (candy + extraCandies >= max) {
+    //             boolList.add(true);
+    //         }else{
+    //             boolList.add(false);
+    //         }
+    //     }
 
-        return boolList;
+    //     return boolList;
 
+    // }
+
+    public List<Boolean> kidsWithCandies(int[] candies, int extraCandies) {
+        int max = Arrays.stream(candies).max().getAsInt();
+        return Arrays.stream(candies).mapToObj(candy -> candy + extraCandies >= max).collect(Collectors.toList());
     }
 
     public static void main(String[] args) {

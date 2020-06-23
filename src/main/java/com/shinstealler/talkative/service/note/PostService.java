@@ -15,22 +15,21 @@ import lombok.AllArgsConstructor;
 @AllArgsConstructor
 @Service
 public class PostService {
+
     private PostRepository postRepository;
 
-    private PostResponseModel response;
-    
     @Transactional
-    public void createPost(PostSaveRequestModel request){
-        postRepository.save(request.toEntity());
+    public long createPost(PostSaveRequestModel request) {
+        return postRepository.save(request.toEntity()).getId();
     }
 
     @Transactional(readOnly = true)
-    public List<PostResponseModel> findAllDesc() {
+    public List<PostResponseModel> findAllPostDesc() {
         return postRepository.findAllDesc().map(PostResponseModel::new).collect(Collectors.toList());
     }
 
     @Transactional
-    public void deletePost(long id){
+    public void deletePost(long id) {
         postRepository.deleteById(id);
     }
 }
