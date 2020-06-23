@@ -10,7 +10,23 @@ spring:
     driver-class-name: org.h2.Driver
     username: sa
     password:
+
+  thymeleaf:
+    enabled: true
+    check-template: true
+    check-template-location: true
+    prefix: classpath:templates/
+    suffix: .html
+    mode: HTML5
+    cache: false
+    encoding: UTF-8
+    template-resolver-order: 0  
+
+---
+spring:
+  datasource:
     data: classpath:data-h2.sql
+
   jpa:
     show-sql: true
     hibernate:
@@ -27,13 +43,5 @@ logging:
   level:
     com.shinstealer.craft:  ${LOG_LEVEL:INFO}
 
----
-spring:
-  thymeleaf:
-    prefix: classpath:templates/
-    check-template-location: true
-    suffix: .html
-    mode: HTML5
-    cache: false
-    template-resolver-order: 0
+  
 

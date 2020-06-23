@@ -10,17 +10,16 @@ import com.shinstealler.talkative.service.note.PostService;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
-
 import lombok.extern.slf4j.Slf4j;
 
-@RestController
+@Controller
 @Slf4j
 @RequestMapping("/shinstealer/talkative")
 public class RestApiController {
@@ -37,8 +36,9 @@ public class RestApiController {
     }
 
     @GetMapping("/note")
-    public void listPost(HttpServletRequest request ,Model model) {
+    public String listPost(HttpServletRequest request ,Model model) {
         model.addAttribute("post", postService.findAllPostDesc());
+        return "/note/main";
     }
 
     @PostMapping("/note/post")
