@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css_lib/bootstrap_css/bootstrap.min.css">
+    <title>note list</title>
+</head>
+<body>
+    
+
+    <div class="col-md-12">
+        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#savePostsModal">글 등록</button>
+        <br/>
+        <br/>
+        <!-- 목록 출력 영역 -->
+        <table class="table table-horizontal table-bordered">
+            <thead class="thead-strong">
+                <tr>
+                    <th>게시글번호</th>
+                    <th>제목</th>
+                    <th>작성자</th>
+                    <th>최종수정일</th>
+                </tr>
+            </thead>
+            <tbody id="tbody">
+                <tr th:each="post : ${post}">
+                    <td>${post.id}</td>
+                    <td>${post.title}</td>
+                    <td>${post.author}}</td>
+                    <td>${post.modifiedDate}</td>
+                </tr>
+            
+            </tbody>
+        </table>
+    </div>
+
+
+    <script src="/js_lib/bootstrap_js/bootstrap.min.js"></script>
+</body>
+</html>

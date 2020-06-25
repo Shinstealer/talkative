@@ -38,7 +38,7 @@ public class RestApiController {
     @GetMapping("/note")
     public String listPost(HttpServletRequest request ,Model model) {
         model.addAttribute("post", postService.findAllPostDesc());
-        return "/note/main";
+        return "/note/list";
     }
 
     @PostMapping("/note/post")

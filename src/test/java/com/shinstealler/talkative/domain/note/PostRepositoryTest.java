@@ -35,19 +35,5 @@ public class PostRepositoryTest {
         assertEquals("author", post.getAuthor());
     }
 
-    @Test
-    public void register_baseTimeEntity() {
-        LocalDateTime now = LocalDateTime.now();
-
-        postRepository.save(Post.builder().title("title").content("content").author("author").build());
-
-        List<Post> postList = postRepository.findAll();
-
-        Post post = postList.get(0);
-
-        assertThat(post.getCreateDate()).isAfter(now);
-        assertThat(post.getModifiedDate()).isAfter(now);
-
-    }
-
+    
 }
