@@ -1,4 +1,4 @@
-package com.shinstealler.talkative.domain.note;
+package com.shinstealler.talkative.domain.member;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -16,24 +16,22 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Getter
 @Entity
-public class Post extends BaseTimeEntity{
-
+public class Member extends BaseTimeEntity {
+    
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private long memId;
 
-    @Column(length = 500, nullable = false)
-    private String title;
+    @Column(length = 20, nullable = false)
+    private String email;
 
-    @Column(columnDefinition = "TEXT", nullable = false)
-    private String content;
-
-    private String author;
+    @Column(length = 100, nullable = false)
+    private String password;
 
     @Builder
-    public Post(String title, String content, String author) {
-        this.title = title;
-        this.content = content;
-        this.author = author;
+    public Member(long memId , String email, String password) {
+        this.memId = memId;
+        this.email = email;
+        this.password = password;
     }
 }

@@ -1,4 +1,4 @@
-package com.shinstealler.talkative.domain.note;
+package com.shinstealler.talkative.domain;
 
 import java.time.LocalDateTime;
 
