@@ -6,6 +6,7 @@ import java.util.Optional;
 
 import com.shinstealler.talkative.domain.member.Member;
 
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -15,7 +16,7 @@ import lombok.ToString;
 @Setter
 @ToString
 @NoArgsConstructor
-public class MemberModel {
+public class MemberResponseModel {
 
     private long memId;
     private String email;
@@ -23,7 +24,8 @@ public class MemberModel {
     private String modifiedDate;
     private String createDate;
 
-    public MemberModel(Member entity) {
+    @Builder
+    public MemberResponseModel(Member entity) {
         this.memId = entity.getMemId();
         this.email = entity.getEmail();
         this.password = entity.getPassword();
