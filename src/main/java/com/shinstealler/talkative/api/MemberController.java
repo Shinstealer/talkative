@@ -19,9 +19,11 @@ import org.springframework.web.context.WebApplicationContext;
 import org.springframework.web.context.support.WebApplicationContextUtils;
 import org.springframework.web.util.UriComponentsBuilder;
 
+import io.swagger.annotations.Api;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
+@Api(tags = {"1, user"})
 @Controller
 @Slf4j
 @AllArgsConstructor
@@ -30,14 +32,13 @@ public class MemberController {
 
     private MemberService memberService;
 
-    // 회원가입 페이지
+    
     @GetMapping("/user/signup")
     public String dispSignup() {
         log.info("move to sing up page");
         return "/member/signup";
     }
 
-    // 회원가입 처리
     @PostMapping("/user/signup")
     public String execSignup(HttpServletRequest request ,MemberRequestModel model) {
 

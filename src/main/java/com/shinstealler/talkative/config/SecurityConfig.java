@@ -46,7 +46,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .formLogin()
                 .loginPage("/shinstealer/talkative/user/login")
                 .defaultSuccessUrl("/shinstealer/talkative/user/login/result").permitAll()
-                .and() // 로그아웃                                                                                            // 설정
+                .and() // 로그아웃                                                                                           
                 .logout().logoutRequestMatcher(new AntPathRequestMatcher("/shinstealer/talkative/user/logout"))
                 .logoutSuccessUrl("/shinstealer/talkative/user/logout/result")
                 .invalidateHttpSession(true)
