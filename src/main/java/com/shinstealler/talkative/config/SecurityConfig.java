@@ -1,7 +1,10 @@
 package com.shinstealler.talkative.config;
 
+import com.shinstealler.talkative.service.member.MemberService;
+
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
@@ -17,6 +20,8 @@ import lombok.AllArgsConstructor;
 @AllArgsConstructor
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
+    private MemberService memberService;
+    
     @Bean
     public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
@@ -32,16 +37,27 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     public void configure(HttpSecurity http) throws Exception {
 
         http.authorizeRequests()
-        .antMatchers("/admin/**").hasRole("ADMIN")
-        .antMatchers("/user/myinfo").hasRole("MEMBER")
-        .antMatchers("/**").permitAll()
-        .and()
-        .logout()
-        .logoutRequestMatcher(new AntPathRequestMatcher("/user/logout"))
-        .logoutSuccessUrl("/main")
-        .invalidateHttpSession(true)
-        .and()
-        .exceptionHandling().accessDeniedPage("/user/denied");
+                // 페이지 권한 설정
+                .antMatchers("/shinstealer/talkative/admin/**").hasRole("ADMIN")
+                .antMatchers("/shinstealer/talkative/user/myinfo").hasRole("MEMBER")
+                .antMatchers("/shinstealer/talkative/**").permitAll()
+                .antMatchers("/h2-console/**").permitAll()
+                .and() // 로그인 설정
+                .formLogin()
+                .loginPage("/shinstealer/talkative/user/login")
+                .defaultSuccessUrl("/shinstealer/talkative/user/login/result").permitAll()
+                .and() // 로그아웃                                                                                            // 설정
+                .logout().logoutRequestMatcher(new AntPathRequestMatcher("/shinstealer/talkative/user/logout"))
+                .logoutSuccessUrl("/shinstealer/talkative/user/logout/result")
+                .invalidateHttpSession(true)
+                .and()
+                // 403 예외처리 핸들링
+                .exceptionHandling()
+                .accessDeniedPage("/shinstealer/talkative/user/denied");
+    }
+    @Override
+    public void configure(AuthenticationManagerBuilder auth) throws Exception {
+        auth.userDetailsService(memberService).passwordEncoder(passwordEncoder());
     }
 
 }

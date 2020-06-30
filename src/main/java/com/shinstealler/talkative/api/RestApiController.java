@@ -41,32 +41,32 @@ public class RestApiController {
         return "/note/list";
     }
 
-    @PostMapping("/note/post")
-    public ResponseEntity<ResponseModel> savePost(HttpServletRequest request,
-            @RequestBody PostSaveRequestModel saveRequest) {
-        log.info("request save post " + request);
+    // @PostMapping("/note/post")
+    // public ResponseEntity<ResponseModel> savePost(HttpServletRequest request,
+    //         @RequestBody PostSaveRequestModel saveRequest) {
+    //     log.info("request save post " + request);
 
-        try {
-            postService.createPost(saveRequest);
+    //     try {
+    //         postService.createPost(saveRequest);
 
-            ResponseModel responseModel = new ResponseModel(StatusCode.SUCCESS);
+    //         ResponseModel responseModel = new ResponseModel(StatusCode.SUCCESS);
 
-            return ResponseEntity.ok(responseModel);
+    //         return ResponseEntity.ok(responseModel);
 
-        } catch (Exception e) {
-            log.error("Error:" , e);
-            return new ResponseEntity<>(new ResponseModel(StatusCode.ERROR), HttpStatus.OK);
-        }
+    //     } catch (Exception e) {
+    //         log.error("Error:" , e);
+    //         return new ResponseEntity<>(new ResponseModel(StatusCode.ERROR), HttpStatus.OK);
+    //     }
 
-    }
+    // }
 
-    @GetMapping("note/delete/{id}")
-    public String deletePost(HttpServletRequest request, @PathVariable("id") long id) {
+    // @GetMapping("note/delete/{id}")
+    // public String deletePost(HttpServletRequest request, @PathVariable("id") long id) {
 
-        HttpSession session = request.getSession();
-        postService.deletePost(id);
+    //     HttpSession session = request.getSession();
+    //     postService.deletePost(id);
 
-        return "redirect:/";
-    }
+    //     return "redirect:/";
+    // }
 
 }

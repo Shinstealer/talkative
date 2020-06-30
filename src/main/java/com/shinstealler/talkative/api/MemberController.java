@@ -1,7 +1,12 @@
 package com.shinstealler.talkative.api;
 
+import com.shinstealler.talkative.model.MemberRequestModel;
+import com.shinstealler.talkative.service.member.MemberService;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -9,12 +14,61 @@ import lombok.extern.slf4j.Slf4j;
 @Controller
 @Slf4j
 @AllArgsConstructor
+@RequestMapping("/shinstealer/talkative")
 public class MemberController {
 
-    @GetMapping("/user/signup")
-    public String newSignup(){
-        return "/member/signup";
-    }
+    private MemberService memberService;
+
+     // 회원가입 페이지
+     @GetMapping("/user/signup")
+     public String dispSignup() {
+         log.info("move to sing up page");
+         return "/member/signup";
+     }
+ 
+     // 회원가입 처리
+     @PostMapping("/user/signup")
+     public String execSignup(MemberRequestModel model) {
+         memberService.join(model);
+ 
+         return "redirect:/member/user/login";
+     }
+ 
+     // 로그인 페이지
+     @GetMapping("/user/login")
+     public String dispLogin() {
+         return "/member/login";
+     }
+ 
+     // 로그인 결과 페이지
+     @GetMapping("/user/login/result")
+     public String dispLoginResult() {
+         return "/member/loginSuccess";
+     }
+ 
+     // 로그아웃 결과 페이지
+     @GetMapping("/user/logout/result")
+     public String dispLogout() {
+         return "/member/logout";
+     }
+ 
+     // 접근 거부 페이지
+     @GetMapping("/user/denied")
+     public String dispDenied() {
+         return "/member/denied";
+     }
+ 
+     // 내 정보 페이지
+     @GetMapping("/user/info")
+     public String dispMyInfo() {
+         return "/member/myinfo";
+     }
+ 
+     // 어드민 페이지
+     @GetMapping("/admin")
+     public String dispAdmin() {
+         return "/member/admin";
+     }
 
     
 }

@@ -7,7 +7,13 @@
     <link rel="stylesheet" href="/src/main/resources/static/css_lib/bootstrap_css/bootstrap.min.css">
 </head>
 <body>
-    main
+    <h1>메인 페이지</h1>
+    <hr>
+    <a sec:authorize="isAnonymous()" th:href="@{/shinstealer/talkative/user/login}">로그인</a>
+    <a sec:authorize="isAuthenticated()" th:href="@{/shinstealer/talkative/user/logout}">로그아웃</a>
+    <a sec:authorize="isAnonymous()" th:href="@{/shinstealer/talkative/user/signup}">회원가입</a>
+    <a sec:authorize="hasRole('ROLE_MEMBER')" th:href="@{/shinstealer/talkative/user/info}">내정보</a>
+    <a sec:authorize="hasRole('ROLE_ADMIN')" th:href="@{/shinstealer/talkative/admin}">어드민</a>
 
     <script src="/src/main/resources/static/js_lib/bootstrap_js/bootstrap.min.js"></script>
 </body>

@@ -9,6 +9,6 @@ import lombok.extern.slf4j.Slf4j;
 @RestControllerAdvice
 @Slf4j
 @Aspect
-public class RestApinControllerAdviser extends ResponseEntityExceptionHandler {
+public class RestApiControllerAdviser extends ResponseEntityExceptionHandler {
     
 }

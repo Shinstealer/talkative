@@ -15,6 +15,7 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -23,7 +24,7 @@ import lombok.AllArgsConstructor;
 
 @Service
 @AllArgsConstructor
-public class MemberService {
+public class MemberService implements UserDetailsService {
     private final MemberRepository repository;
 	
 
@@ -34,7 +35,7 @@ public class MemberService {
         return repository.save(model.toEntity()).getMemId();
     }
 
-    
+    @Override
     public UserDetails loadUserByUsername(String memberEmail) throws UsernameNotFoundException {
         Optional<Member> userEntityWrapper = repository.findByEmail(memberEmail);
         Member userEntity = userEntityWrapper.get();
