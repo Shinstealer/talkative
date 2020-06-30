@@ -22,7 +22,7 @@ public class Member extends BaseTimeEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long memId;
 
-    @Column(length = 20, nullable = false)
+    @Column(length = 100, nullable = false)
     private String email;
 
     @Column(length = 100, nullable = false)

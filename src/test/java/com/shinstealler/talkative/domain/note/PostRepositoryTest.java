@@ -20,18 +20,18 @@ public class PostRepositoryTest {
         postRepository.deleteAll();
     }
 
-    @Test
-    public void save() {
-        postRepository.save(Post.builder().title("title").content("content").author("author").build());
+   @Test
+   public void save() {
+       postRepository.save(Post.builder().title("title").content("content").author("author").build());
 
-        List<Post> postList = postRepository.findAll();
+       List<Post> postList = postRepository.findAll();
 
-        Post post = postList.get(0);
+       Post post = postList.get(0);
 
-        assertEquals("title", post.getTitle());
-        assertEquals("content", post.getContent());
-        assertEquals("author", post.getAuthor());
-    }
+       assertEquals("title", post.getTitle());
+       assertEquals("content", post.getContent());
+       assertEquals("author", post.getAuthor());
+   }
 
     
 }
