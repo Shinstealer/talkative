@@ -11,6 +11,9 @@
     <p>
         <span sec:authentication="name"></span>님 환영합니다~
     </p>
+    <p>
+        ROLE: <span sec:authentication="principal.authorities"></span>
+    </p>
     <a th:href="@{'/shinstealer/talkative/'}">메인으로 이동</a>
 </body>
 </html>

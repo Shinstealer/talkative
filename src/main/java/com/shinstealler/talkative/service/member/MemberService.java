@@ -29,8 +29,8 @@ public class MemberService implements UserDetailsService {
 	
 
     @Transactional
-    public long join(final MemberRequestModel model) {
-        final BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+    public long join(MemberRequestModel model) {
+        BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
         model.setPassword(passwordEncoder.encode(model.getPassword()));
         return repository.save(model.toEntity()).getMemId();
     }

@@ -8,9 +8,9 @@
 </head>
 <body>
     
-
+<br>
     <div class="col-md-12">
-        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#savePostsModal">글 등록</button>
+        <button sec:authorize="hasRole('ADMIN')" type="button" class="btn btn-primary" >POST</button>
         <br/>
         <br/>
         <!-- 목록 출력 영역 -->
@@ -25,10 +25,10 @@
             </thead>
             <tbody id="tbody">
                 <tr th:each="post : ${post}">
-                    <td>${post.id}</td>
-                    <td>${post.title}</td>
-                    <td>${post.author}}</td>
-                    <td>${post.modifiedDate}</td>
+                    <td th:text ="${post.id}"></td>
+                    <td th:text ="${post.content}"></td>
+                    <td th:text ="${post.author}"></td>
+                    <td th:text ="${post.modifiedDate}"></td>
                 </tr>
             
             </tbody>
