@@ -36,7 +36,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     public void configure(HttpSecurity http) throws Exception {
 
-        http.authorizeRequests()
+        http.csrf().disable();
+        http.headers().frameOptions().disable();
+        http.
+        authorizeRequests()
                 // 페이지 권한 설정
                 .antMatchers("/shinstealer/talkative/admin/**").hasRole("ADMIN")
                 .antMatchers("/shinstealer/talkative/user/myinfo").hasRole("MEMBER")
