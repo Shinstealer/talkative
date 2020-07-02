@@ -48,7 +48,7 @@ public class MemberController {
         // UriComponentsBuilder builder = UriComponentsBuilder.fromHttpRequest(req);
         // URI location = builder.path("/user/login").build().toUri();
 
-        return "redirect:/shinstealer/talkative/user/login";
+        return "redirect:/shinstealler/talkative/user/login";
     }
 
     // 로그인 페이지
