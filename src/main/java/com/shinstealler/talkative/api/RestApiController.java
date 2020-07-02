@@ -19,7 +19,7 @@ import lombok.extern.slf4j.Slf4j;
 
 @Controller
 @Slf4j
-@RequestMapping("/shinstealer/talkative")
+@RequestMapping("/shinstealler/talkative")
 public class RestApiController {
 
     private PostService postService;

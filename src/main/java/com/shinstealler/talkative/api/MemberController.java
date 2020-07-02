@@ -27,7 +27,7 @@ import lombok.extern.slf4j.Slf4j;
 @Controller
 @Slf4j
 @AllArgsConstructor
-@RequestMapping("/shinstealer/talkative")
+@RequestMapping("/shinstealler/talkative")
 public class MemberController {
 
     private MemberService memberService;
@@ -36,7 +36,7 @@ public class MemberController {
     @GetMapping("/user/signup")
     public String dispSignup() {
         log.info("move to sing up page");
-        return "/member/signup";
+        return "/user/signup";
     }
 
     @PostMapping("/user/signup")
@@ -44,47 +44,47 @@ public class MemberController {
 
         memberService.join(model);
 
-        HttpRequest req = new ServletServerHttpRequest(request);
-        UriComponentsBuilder builder = UriComponentsBuilder.fromHttpRequest(req);
-        URI location = builder.path("/user/login").build().toUri();
+        // HttpRequest req = new ServletServerHttpRequest(request);
+        // UriComponentsBuilder builder = UriComponentsBuilder.fromHttpRequest(req);
+        // URI location = builder.path("/user/login").build().toUri();
 
-        return "redirect:" + location.toString();
+        return "redirect:/shinstealer/talkative/user/login";
     }
 
     // 로그인 페이지
     @GetMapping("/user/login")
     public String dispLogin() {
-        return "/member/login";
+        return "/user/login";
     }
 
     // 로그인 결과 페이지
     @GetMapping("/user/login/result")
     public String dispLoginResult() {
-        return "/member/loginSuccess";
+        return "/user/loginSuccess";
     }
 
     // 로그아웃 결과 페이지
     @GetMapping("/user/logout/result")
     public String dispLogout() {
-        return "/member/logout";
+        return "/user/logout";
     }
 
     // 접근 거부 페이지
     @GetMapping("/user/denied")
     public String dispDenied() {
-        return "/member/denied";
+        return "/user/denied";
     }
 
     // 내 정보 페이지
     @GetMapping("/user/info")
     public String dispMyInfo() {
-        return "/member/myinfo";
+        return "/user/myinfo";
     }
 
     // 어드민 페이지
     @GetMapping("/admin")
     public String dispAdmin() {
-        return "/member/admin";
+        return "/user/admin";
     }
 
     @GetMapping("encode-password")
