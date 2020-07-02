@@ -20,6 +20,7 @@ import org.springframework.web.context.support.WebApplicationContextUtils;
 import org.springframework.web.util.UriComponentsBuilder;
 
 import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
@@ -39,6 +40,7 @@ public class MemberController {
         return "/user/signup";
     }
 
+    @ApiOperation(value = "signup", notes = "operate signup")
     @PostMapping("/user/signup")
     public String execSignup(HttpServletRequest request ,MemberRequestModel model) {
 
