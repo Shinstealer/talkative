@@ -31,6 +31,8 @@ spring:
     show-sql: true
     hibernate:
       ddl-auto: create-drop
+  jwt:
+    secret: shinstealer@@@
 
 ---
 logging:
@@ -43,5 +45,5 @@ logging:
   level:
     com.shinstealer.craft:  ${LOG_LEVEL:INFO}
 
-  
+
 
