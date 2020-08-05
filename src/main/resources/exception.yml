@@ -1,0 +1,4 @@
+# exception_en.yml
+emailLoginFailed:
+  code: "-1001"
+  msg: "Your account does not exist or your email or password is incorrect."
