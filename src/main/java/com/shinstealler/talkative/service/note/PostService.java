@@ -3,6 +3,8 @@ package com.shinstealler.talkative.service.note;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import com.shinstealler.talkative.domain.note.ParamPost;
+import com.shinstealler.talkative.domain.note.Post;
 import com.shinstealler.talkative.domain.note.PostRepository;
 import com.shinstealler.talkative.model.PostResponseModel;
 import com.shinstealler.talkative.model.PostSaveRequestModel;
@@ -31,5 +33,10 @@ public class PostService {
     @Transactional
     public void deletePost(long id) {
         postRepository.deleteById(id);
+    }
+
+    @Transactional
+    public Post updatePost(long postId, String uid, ParamPost paramPost){
+        return null;
     }
 }
