@@ -1,6 +1,6 @@
 plugins {
 	id 'org.springframework.boot' version '2.3.0.RELEASE'
-	id 'io.spring.dependency-management' version '1.0.9.RELEASE'
+	id 'io.spring.dependency-management' version '1.0.10.RELEASE'
 	id 'java-library'
 	id 'jacoco'
 	id 'com.google.cloud.tools.jib' version '2.1.0'
@@ -9,8 +9,8 @@ plugins {
 group = 'com.shinstealler'
 version = '1.0.0'
 java {
-  sourceCompatibility = JavaVersion.VERSION_1_8
-  targetCompatibility = JavaVersion.VERSION_1_8
+  sourceCompatibility = JavaVersion.VERSION_11
+  targetCompatibility = JavaVersion.VERSION_11
 }
 
 configurations {
@@ -21,26 +21,33 @@ configurations {
 
 repositories {
 	jcenter()
-    mavenLocal()
-    mavenCentral()
+  mavenLocal()
+  mavenCentral()
 }
 
 dependencies {
+  implementation 'org.springframework.boot:spring-boot-starter-data-mongodb'
 	implementation 'org.springframework.boot:spring-boot-starter-actuator'
 	implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
 	implementation 'org.springframework.boot:spring-boot-starter-security'
-    implementation 'org.thymeleaf.extras:thymeleaf-extras-springsecurity5'
 	implementation 'org.springframework.boot:spring-boot-starter-web'
 	implementation 'org.springframework.session:spring-session-core'
-	implementation 'org.springframework.boot:spring-boot-starter-actuator'
 	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
 
+  implementation 'org.thymeleaf.extras:thymeleaf-extras-springsecurity5'
+
+  //swagger
 	implementation 'io.springfox:springfox-swagger2:2.9.2'
-    implementation 'io.springfox:springfox-swagger-ui:2.9.2'
+  implementation 'io.springfox:springfox-swagger-ui:2.9.2'
 
 	//jwt
-    implementation 'io.jsonwebtoken:jjwt:0.9.1'
+  implementation 'io.jsonwebtoken:jjwt:0.9.1'
 	
+  //javax
+  implementation "jakarta.xml.bind:jakarta.xml.bind-api:2.3.2"
+  implementation "org.glassfish.jaxb:jaxb-runtime:2.3.2"
+
+  //h2
 	runtimeOnly 'com.h2database:h2'
 
 	compileOnly 'org.projectlombok:lombok:1.18.12'
@@ -60,7 +67,7 @@ test {
 jib.to.image = 'sample/path'
 jib.container.environment = [JAVA_TOOL_OPTIONS: '-Dfile.encoding=UTF-8']
 jib.container.mainClass = 'com.shinstealer.talkative.TalkativeSpringBoot'
-jib.from.image ='amazoncorretto:8'
+jib.from.image ='amazoncorretto:11'
 
 def defaultEncoding = 'UTF-8'
 tasks.withType(AbstractCompile).each { it.options.encoding = defaultEncoding }

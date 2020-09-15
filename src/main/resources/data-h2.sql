@@ -1,3 +1,2 @@
 insert into post (title, author, content, create_date, modified_date) values ( 'test1', 'test1@gmail.com', 'test1 text', now(), now());
 insert into post (title, author, content, create_date, modified_date) values ( 'test2', 'test2@gmail.com', 'test2 text', now(), now());
-insert into member(email , password ,create_date, modified_date) values('admin@shinstealler.com' , '$2a$10$06otTHBswMCOz0ufv3SGz.Kf9Hy86Cl8vfbYqPzIpVog5/4ji4ow2' , now() , now());
